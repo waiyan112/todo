@@ -42,7 +42,7 @@ class HomeScreen extends PureComponent {
   constructor(props) {
     super(props);
     this.renderSeparator = this.renderSeparator.bind(this);
-    this.updateState = this.updateState.bind(this);
+    // this.updateState = this.updateState.bind(this);
     // this.pushNote = this.pushNote.bind(this);
     // this.updateNote = this.updateNote.bind(this);
     this.setScrollEnabled = this.setScrollEnabled.bind(this);

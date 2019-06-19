@@ -1,8 +1,7 @@
 import { createSelector } from "reselect";
-import { isEmpty, immutableToJS } from '../../assets/utils';
+import { isEmpty, immutableToJS } from "../../assets/utils";
 
 const selectorState = state => state.task;
-
 
 const taskSelector = () =>
   createSelector(

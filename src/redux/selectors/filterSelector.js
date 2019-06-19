@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { isEmpty, immutableToJS } from '../../assets/utils';
+import { isEmpty, immutableToJS } from "../../assets/utils";
 
 const selectorState = state => state.filter;
 

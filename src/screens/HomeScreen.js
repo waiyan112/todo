@@ -109,25 +109,25 @@ class HomeScreen extends PureComponent {
     });
   }
 
-//   updateState(title, type) {
-//     if (type == "delete") {
-//       const data = this.state.data.filter(item => item.title != title);
-//       this.setState({
-//         data: data
-//       });
-//     } else {
-//       let data = [...this.state.data];
-//       data.forEach(item => {
-//         if (item.title == title) {
-//           type == "fav" ? (item.fav = !item.fav) : (item.heart = !item.heart);
-//         }
-//       });
+  //   updateState(title, type) {
+  //     if (type == "delete") {
+  //       const data = this.state.data.filter(item => item.title != title);
+  //       this.setState({
+  //         data: data
+  //       });
+  //     } else {
+  //       let data = [...this.state.data];
+  //       data.forEach(item => {
+  //         if (item.title == title) {
+  //           type == "fav" ? (item.fav = !item.fav) : (item.heart = !item.heart);
+  //         }
+  //       });
 
-//       this.setState({
-//         data: data
-//       });
-//     }
-//   }
+  //       this.setState({
+  //         data: data
+  //       });
+  //     }
+  //   }
 
   setScrollEnabled(enable) {
     this.setState({

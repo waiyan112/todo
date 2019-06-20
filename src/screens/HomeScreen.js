@@ -11,10 +11,8 @@ import {
 } from "react-native";
 import { createStructuredSelector } from "reselect";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { NavigationActions } from "react-navigation";
 import { connect } from "react-redux";
 import ListTile from "../components/ListTile";
-import list from "../assets/DataList";
 import {
   taskDataCreate,
   taskDataDelete,
@@ -23,7 +21,6 @@ import {
 import { filter } from "../redux/actions/filterAction";
 import { taskSelector } from "../redux/selectors/taskSelector";
 import { filteredTaskaskSelector } from "../redux/selectors/filterSelector";
-import { isEmpty } from "../assets/utils";
 
 const { height, width } = Dimensions.get("window");
 

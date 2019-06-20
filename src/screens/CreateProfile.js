@@ -23,7 +23,7 @@ import {
   userDataUpdate
 } from "../redux/actions/userAction";
 import { userSelector } from "../redux/selectors/userSelector";
-import { isEmpty } from "../assets/utils";
+import { isEmpty, isValidEmail, isValidPhone } from "../assets/utils";
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -230,7 +230,7 @@ class CreateProfile extends Component {
             />
           </View>
         </ScrollView>
-        <TouchableOpacity onPress={ !isEmpty(this.state.name) && !isEmpty(this.state.email) && !isEmpty(this.state.number) && !isEmpty(this.state.idProof)  ? this.createProfile : null}>
+        <TouchableOpacity onPress={ isValidEmail(this.state.email) && isValidPhone(this.state.number) && !isEmpty(this.state.name) && !isEmpty(this.state.email) && !isEmpty(this.state.number) && !isEmpty(this.state.idProof) ? this.createProfile : null}>
           <View
             style={{
               padding: 15,

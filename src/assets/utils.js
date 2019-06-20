@@ -6,12 +6,12 @@ export const openCamera = async cropHeader => {
   if (Platform.OS === "android") {
     return await requestCameraPermission(cropHeader);
   }
-};
+}
 export const openGallery = async cropHeader => {
   if (Platform.OS === "android") {
     return await requestGalleryPermission(cropHeader);
   }
-};
+}
 export function isEmpty(obj) {
   // console.log(typeof(obj));
   if (obj !== null && obj !== undefined) {
@@ -150,3 +150,18 @@ async function requestCameraPermission(cropHeader) {
     console.log(err);
   }
 }
+export const isValidEmail = (text) => {
+  const reg = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/;
+  if (reg.test(text) === false) {
+      return false;
+  }
+  return true;
+};
+
+export const isValidPhone = (text) => {
+  const phoneno = /^[0-9]{6,14}$/;
+  if (phoneno.test(text) === false) {
+      return false;
+  }
+  return true;
+};

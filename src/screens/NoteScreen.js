@@ -7,6 +7,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import { connect } from "react-redux";
+import styles from './styles';
 
 const { height, width } = Dimensions.get("window");
 
@@ -19,21 +20,16 @@ class NoteScreen extends Component {
       headerTitle: (
         <View style={{ flexDirection: "column" }}>
           <Text
-            style={{
-              fontSize: 30,
-              fontFamily: "serif",
-              fontWeight: "bold",
-              color: "black"
-            }}
+            style={styles.noteScreenHeaderTitle}
           >
             {navigation.state.params.item.title}
           </Text>
-          <Text style={{ fontSize: 10, color: "#d8d8d8" }}>
+          <Text style={styles.noteScreenHeaderTitleLastUpdated}>
             Last updated: {navigation.state.params.item.created}
           </Text>
         </View>
       ),
-      headerStyle: { height: height / 8 },
+      headerStyle: styles.noteScreenHeaderStyle,
       headerRight: (
         <TouchableOpacity
           style={{ padding: 20 }}
@@ -63,13 +59,4 @@ export default connect(
   null
 )(NoteScreen);
 
-const styles = StyleSheet.create({
-  text: {
-    textAlign: "justify",
-    fontSize: 20,
-    includeFontPadding: true
-  },
-  view: {
-    padding: 20
-  }
-});
+

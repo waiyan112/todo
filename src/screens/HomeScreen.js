@@ -21,6 +21,7 @@ import {
 import { filter } from "../redux/actions/filterAction";
 import { taskSelector } from "../redux/selectors/taskSelector";
 import { filteredTaskaskSelector } from "../redux/selectors/filterSelector";
+import styles from './styles';
 
 const { height, width } = Dimensions.get("window");
 
@@ -29,14 +30,8 @@ class HomeScreen extends PureComponent {
     const params = navigation.state.params || {};
     return {
       headerTitle: "To Do",
-      headerStyle: { height: height / 8 },
-      headerTitleStyle: {
-        fontSize: 20,
-        fontFamily: "serif",
-        fontWeight: "bold",
-        justifyContent: "center",
-        alignSelf: "center"
-      },
+      headerStyle: styles.addScreenHeaderStyle,
+      headerTitleStyle: styles.addScreenHeaderTitleStyle ,
       headerLeft: params.headerLeft,
       headerRight: params.headerRight
     };
@@ -106,7 +101,7 @@ class HomeScreen extends PureComponent {
   componentDidMount() {
     let headerRight = (
       <TouchableOpacity
-        style={{ alignSelf: "center", padding: 20 }}
+        style={styles.headeRightStyle}
         onPress={() =>
           this.props.navigation.navigate("add", {
             length: this.props.taskList.length
@@ -118,7 +113,7 @@ class HomeScreen extends PureComponent {
     );
     let headerLeft = (
       <TouchableOpacity
-        style={{ alignSelf: "center", padding: 20 }}
+        style={styles.headeLeftStyle}
         onPress={() => this.props.navigation.toggleDrawer()}
       >
         <Icon name="bars" size={25} color="black" />
@@ -172,14 +167,7 @@ class HomeScreen extends PureComponent {
       <View>
         <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
         <View
-          style={{
-            backgroundColor: "black",
-            borderBottomColor: "grey",
-            borderBottomWidth: 1,
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between"
-          }}
+          style={styles.searchView}
         >
           <TextInput
             onChangeText={search => this.setState({ search })}
@@ -223,9 +211,3 @@ export default connect(
   { taskDataCreate, taskDataDelete, taskDataUpdate, filter }
 )(HomeScreen);
 
-const styles = StyleSheet.create({
-  separatorStyle: {
-    height: 1,
-    backgroundColor: "#d4d4d4"
-  }
-});

@@ -18,3 +18,11 @@ export const filterFailure = error => ({
   type: FILTER_FAILURE,
   data: error
 });
+
+export const filter = (filter, list) => ({
+  type: FILTER_SUCCESS,
+  data: {
+    filter,
+    list
+  }
+});

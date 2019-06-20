@@ -5,7 +5,9 @@ import {
   FlatList,
   StatusBar,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  TextInput,
+  Keyboard
 } from "react-native";
 import { createStructuredSelector } from "reselect";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -18,7 +20,10 @@ import {
   taskDataDelete,
   taskDataUpdate
 } from "../redux/actions/taskAction";
+import { filter } from "../redux/actions/filterAction";
 import { taskSelector } from "../redux/selectors/taskSelector";
+import { filteredTaskaskSelector } from "../redux/selectors/filterSelector";
+import { isEmpty } from "../assets/utils";
 
 const { height, width } = Dimensions.get("window");
 
@@ -46,11 +51,30 @@ class HomeScreen extends PureComponent {
     // this.pushNote = this.pushNote.bind(this);
     // this.updateNote = this.updateNote.bind(this);
     this.setScrollEnabled = this.setScrollEnabled.bind(this);
+    this.searchTask = this.searchTask.bind(this);
 
     this.state = {
       enable: true,
-      data: list
+      search: "",
+      clear: true
     };
+  }
+  searchTask() {
+    if (this.state.search != "") {
+      if (this.state.clear) {
+        this.props.filter(this.state.search, this.props.taskList);
+        this.setState(prevState => ({
+          clear: !prevState.clear
+        }));
+      } else {
+        this.props.filter("", this.props.taskList);
+        this.setState(prevState => ({
+          clear: !prevState.clear,
+          search: ""
+        }));
+      }
+    }
+    Keyboard.dismiss();
   }
 
   renderSeparator() {
@@ -145,15 +169,43 @@ class HomeScreen extends PureComponent {
       />
     );
   }
-
   render() {
+    console.log(this.props.filteredTask, "lknfjnjnjnn11111111");
     return (
       <View>
         <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
+        <View
+          style={{
+            backgroundColor: "black",
+            borderBottomColor: "grey",
+            borderBottomWidth: 1,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between"
+          }}
+        >
+          <TextInput
+            onChangeText={search => this.setState({ search })}
+            value={this.state.search}
+            multiline={false}
+            placeholder={"Start typing to search"}
+            placeholderTextColor="#8d8a7d"
+            style={{ color: "#fff" }}
+          />
+          <Icon
+            onPress={this.searchTask}
+            name={this.state.clear ? "search" : "times"}
+            size={25}
+            color={"#fff"}
+            style={{ marginRight: 5 }}
+          />
+        </View>
         <FlatList
           showsVerticalScrollIndicator={false}
           style={this.props.style}
-          data={this.props.taskList}
+          data={
+            this.state.clear ? this.props.taskList : this.props.filteredTask
+          }
           ItemSeparatorComponent={this.renderSeparator}
           renderItem={({ item }) => this.renderItem(item)}
           scrollEnabled={this.state.enable}
@@ -165,12 +217,13 @@ class HomeScreen extends PureComponent {
 }
 
 const mapStateToProps = createStructuredSelector({
-  taskList: taskSelector()
+  taskList: taskSelector(),
+  filteredTask: filteredTaskaskSelector()
 });
 
 export default connect(
   mapStateToProps,
-  { taskDataCreate, taskDataDelete, taskDataUpdate }
+  { taskDataCreate, taskDataDelete, taskDataUpdate, filter }
 )(HomeScreen);
 
 const styles = StyleSheet.create({

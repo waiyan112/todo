@@ -17,7 +17,17 @@ export function filter(state = fromJS(intialState), action) {
   switch (action.type) {
     case FILTER_SUCCESS:
       oldState = state.toJS();
-      oldState.newsData = [...oldState.newsData, ...action.data];
+      if (action.data.filter != "") {
+        oldState.task = action.data.list;
+        const searchText = action.data.filter.toLowerCase();
+        let filteredData = oldState.task.filter(item => {
+          let title = item.title.toLowerCase();
+          return title.includes(searchText);
+        });
+        oldState.task = filteredData;
+      } else {
+        oldState.task = [];
+      }
       oldState.isLoading = false;
       return fromJS(oldState);
     case FILTER_PROGRESS:

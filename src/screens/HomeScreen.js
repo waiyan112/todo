@@ -158,7 +158,6 @@ class HomeScreen extends PureComponent {
     );
   }
   render() {
-    console.log(this.props.filteredTask, "lknfjnjnjnn11111111");
     return (
       <View style={{flex:1}}>
         <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />

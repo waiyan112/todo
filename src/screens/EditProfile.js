@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  TextInput,
   Keyboard,
   Image,
   ScrollView
@@ -137,20 +136,11 @@ class EditProfile extends Component {
             >
               <MaterialIcons name="edit" size={16} color={"#222222"} />
             </TouchableOpacity>
-            <View
-              style={styles.TitleView}
-            >
-              <Text
-                style={styles.TitleText}
-                numberOfLines={2}
-              >
+            <View style={styles.TitleView}>
+              <Text style={styles.TitleText} numberOfLines={2}>
                 {name}
               </Text>
-              <Text
-                style={styles.EmailText}
-              >
-                {email}
-              </Text>
+              <Text style={styles.EmailText}>{email}</Text>
             </View>
           </View>
           <View>
@@ -189,12 +179,8 @@ class EditProfile extends Component {
           </View>
         </ScrollView>
         <TouchableOpacity onPress={this.updateProfile}>
-          <View
-            style={styles.UpdateProfileView}
-          >
-            <Text style={styles.UpdateProfileText}>
-              UPDATE PROFILE
-            </Text>
+          <View style={styles.UpdateProfileView}>
+            <Text style={styles.UpdateProfileText}>UPDATE PROFILE</Text>
           </View>
         </TouchableOpacity>
       </KeyboardAwareScrollView>

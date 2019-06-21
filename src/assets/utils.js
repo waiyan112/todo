@@ -1,17 +1,16 @@
 import { PermissionsAndroid, Platform, ToastAndroid } from "react-native";
 import ImagePicker from "react-native-image-crop-picker";
-import ImageResizer from "react-native-image-resizer";
 
 export const openCamera = async cropHeader => {
   if (Platform.OS === "android") {
     return await requestCameraPermission(cropHeader);
   }
-}
+};
 export const openGallery = async cropHeader => {
   if (Platform.OS === "android") {
     return await requestGalleryPermission(cropHeader);
   }
-}
+};
 export function isEmpty(obj) {
   // console.log(typeof(obj));
   if (obj !== null && obj !== undefined) {
@@ -45,11 +44,6 @@ export function immutableToJS(obj) {
   }
   return obj;
 }
-export async function resize(uri) {
-  // console.log(uri);
-  const temp = await ImageResizer.createResizedImage(uri, 480, 480, "JPEG", 80);
-  return temp;
-}
 
 async function requestGalleryPermission(cropHeader) {
   try {
@@ -65,11 +59,6 @@ async function requestGalleryPermission(cropHeader) {
         width: 1440,
         cropperToolbarTitle: cropHeader || "Crop Image",
         freeStyleCropEnabled: true,
-        includeBase64: true,
-        cropperActiveWidgetColor: colors.themeColor,
-        cropperStatusBarColor: colors.themeColor,
-        cropperToolbarColor: colors.themeColor,
-        hideBottomControls: true
       });
     }
     const granted1 = await PermissionsAndroid.request(
@@ -84,11 +73,6 @@ async function requestGalleryPermission(cropHeader) {
         width: 1440,
         cropperToolbarTitle: cropHeader || "Crop Image",
         freeStyleCropEnabled: true,
-        includeBase64: true,
-        cropperActiveWidgetColor: colors.themeColor,
-        cropperStatusBarColor: colors.themeColor,
-        cropperToolbarColor: colors.themeColor,
-        hideBottomControls: true
       });
     } else if (granted1 === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
       ToastAndroid.show(
@@ -114,12 +98,7 @@ async function requestCameraPermission(cropHeader) {
         height: 720,
         width: 1440,
         cropperToolbarTitle: cropHeader || "Crop Image",
-        freeStyleCropEnabled: true,
-        includeBase64: true,
-        cropperActiveWidgetColor: colors.themeColor,
-        cropperStatusBarColor: colors.themeColor,
-        cropperToolbarColor: colors.themeColor,
-        hideBottomControls: true
+        freeStyleCropEnabled: true
       });
     }
     const granted1 = await PermissionsAndroid.request(
@@ -134,11 +113,6 @@ async function requestCameraPermission(cropHeader) {
         width: 1440,
         cropperToolbarTitle: cropHeader || "Crop Image",
         freeStyleCropEnabled: true,
-        includeBase64: true,
-        cropperActiveWidgetColor: colors.themeColor,
-        cropperStatusBarColor: colors.themeColor,
-        cropperToolbarColor: colors.themeColor,
-        hideBottomControls: true
       });
     } else if (granted1 === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
       ToastAndroid.show(
@@ -150,18 +124,18 @@ async function requestCameraPermission(cropHeader) {
     console.log(err);
   }
 }
-export const isValidEmail = (text) => {
+export const isValidEmail = text => {
   const reg = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/;
   if (reg.test(text) === false) {
-      return false;
+    return false;
   }
   return true;
 };
 
-export const isValidPhone = (text) => {
+export const isValidPhone = text => {
   const phoneno = /^[0-9]{6,14}$/;
   if (phoneno.test(text) === false) {
-      return false;
+    return false;
   }
   return true;
 };

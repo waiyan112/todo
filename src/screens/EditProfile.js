@@ -13,7 +13,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { connect } from "react-redux";
 import { USER_DEFAULT } from "../assets/index";
 import TextInputView from "../components/TextInputView";
-import { openCamera, resize, openGallery } from "../assets/utils";
+import { openCamera, openGallery } from "../assets/utils";
 import ModalForImageSelection from "../components/ModalForImageSelection";
 import ModalForProofSelection from "../components/ModalForProofSelection";
 import {
@@ -60,26 +60,20 @@ class EditProfile extends Component {
     const { cropMessage } = this.state;
     const self = this;
     openCamera(cropMessage).then(img => {
-      const mimeType = img.mime;
-      resize(img.path).then(image => {
-        image.mime = mimeType;
-        self.setState(prevState => ({
-          showImageModal: !prevState.showImageModal
-        }));
-      });
+      self.setState(prevState => ({
+        showImageModal: !prevState.showImageModal,
+        image: img.path
+      }));
     });
   }
   openGallery() {
     const { cropMessage } = this.state;
     const self = this;
     openGallery(cropMessage).then(img => {
-      const mimeType = img.mime;
-      resize(img.path).then(image => {
-        image.mime = mimeType;
-        self.setState(prevState => ({
-          showImageModal: !prevState.showImageModal
-        }));
-      });
+      self.setState(prevState => ({
+        showImageModal: !prevState.showImageModal,
+        image: img.path
+      }));
     });
   }
   updateImage() {
@@ -126,9 +120,9 @@ class EditProfile extends Component {
           <View style={styles.ImageView}>
             <Image
               style={styles.Image}
-              //   source={ image === "" ? USER_DEFAULT : require(image)}
-              source={USER_DEFAULT}
-              resizeMode={"contain"}
+              source={ this.state.image === "" ? USER_DEFAULT : {uri: this.state.image}}
+              // source={USER_DEFAULT}
+              resizeMode={"cover"}
             />
             <TouchableOpacity
               style={styles.ImageEdit}

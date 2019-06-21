@@ -1,11 +1,9 @@
 import React, { PureComponent } from "react";
 import {
-  StyleSheet,
   View,
   FlatList,
   StatusBar,
   TouchableOpacity,
-  Dimensions,
   TextInput,
   Keyboard
 } from "react-native";
@@ -22,8 +20,6 @@ import { filter } from "../redux/actions/filterAction";
 import { taskSelector } from "../redux/selectors/taskSelector";
 import { filteredTaskaskSelector } from "../redux/selectors/filterSelector";
 import styles from './styles';
-
-const { height, width } = Dimensions.get("window");
 
 class HomeScreen extends PureComponent {
   static navigationOptions = ({ navigation }) => {

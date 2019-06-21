@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import {
   View,
   Text,
-  Dimensions,
   TouchableOpacity,
   TextInput
 } from "react-native";
 import { connect } from "react-redux";
 import { taskDataCreate } from "../redux/actions/taskAction";
+import styles from "./styles";
 
-const { height, width } = Dimensions.get("window");
 
 class AddScreen extends Component {
   constructor(props) {
@@ -25,15 +24,8 @@ class AddScreen extends Component {
     const params = navigation.state.params || {};
     return {
       headerTitle: "Add New Task",
-      headerStyle: { height: height / 8 },
-      headerTitleStyle: {
-        fontSize: 30,
-        fontFamily: "serif",
-        fontWeight: "bold",
-        justifyContent: "flex-start",
-        alignSelf: "flex-end",
-        marginBottom: 18
-      },
+      headerStyle: styles.addScreenHeaderStyle,
+      headerTitleStyle: styles.addScreenHeaderTitleStyle,
       headerRight: params.headerRight
     };
   };
@@ -67,7 +59,7 @@ class AddScreen extends Component {
 
   render() {
     return (
-      <View style={{ flexDirection: "column" }}>
+      <View>
         <TextInput
           onChangeText={title => this.setState({ title })}
           value={this.state.title}

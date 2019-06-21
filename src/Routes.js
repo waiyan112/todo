@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Dimensions, View } from "react-native";
+import { Dimensions } from "react-native";
 import {
   createAppContainer,
   createStackNavigator,
   createDrawerNavigator,
-  createSwitchNavigator,
+  createSwitchNavigator
 } from "react-navigation";
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
@@ -18,7 +18,6 @@ import CreateProfile from "./screens/CreateProfile";
 import { userSelector } from "./redux/selectors/userSelector";
 import { isEmpty } from "./assets/utils";
 const { height, width } = Dimensions.get("window");
-
 
 const ScreenNavigator = new createStackNavigator({
   home: {
@@ -43,7 +42,7 @@ const SideDrawer = new createDrawerNavigator(
       screen: ScreenNavigator
     },
     EditProfile: {
-      screen: EditProfile,
+      screen: EditProfile
     }
   },
   {
@@ -70,7 +69,8 @@ class Routes extends Component {
   }
 
   render() {
-    return isEmpty(this.props.userInfo) ? <AppNavigator1 /> : <AppNavigator2 />;
+    const { userInfo } = this.props;
+    return isEmpty(userInfo) ? <AppNavigator1 /> : <AppNavigator2 />;
   }
 }
 const mapStateToProps = createStructuredSelector({

@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  TextInput,
   Keyboard,
   Image,
   ScrollView
@@ -24,6 +23,7 @@ import {
 } from "../redux/actions/userAction";
 import { userSelector } from "../redux/selectors/userSelector";
 import { isEmpty, isValidEmail, isValidPhone } from "../assets/utils";
+import styles from './styles';
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -107,15 +107,9 @@ class CreateProfile extends Component {
     return (
       <KeyboardAwareScrollView
         scrollEnabled
-        style={{ backgroundColor: "#fff", flex: 1 }}
+        style={styles.keyBoardAwareView}
         resetScrollToCoords={{ x: 0, y: 0 }}
-        contentContainerStyle={{
-          flex: 1,
-          justifyContent: "space-between",
-          backgroundColor: "#fff",
-          padding: 16,
-          paddingBottom: 24
-        }}
+        contentContainerStyle={styles.editProfileContentStyle}
         keyboardShouldPersistTaps="always"
       >
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -131,65 +125,31 @@ class CreateProfile extends Component {
             onSetProof={this.onSetProof}
           />
           <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center"
-            }}
+            style={styles.ImageView}
           >
             <Image
-              style={{
-                width: 100, // 180
-                height: 100, // 180
-                borderRadius: 50,
-                marginBottom: 10,
-                borderWidth: 1
-              }}
+              style={styles.Image}
               //   source={ image === "" ? USER_DEFAULT : require(image)}
               source={USER_DEFAULT}
               resizeMode={"contain"}
             />
             <TouchableOpacity
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                height: 40,
-                width: 40,
-                borderRadius: 25,
-                // color: '#000',
-                backgroundColor: "grey",
-                marginTop: -40,
-                marginLeft: 50,
-                padding: 5
-              }}
+              style={styles.ImageEdit}
               onPress={this.updateImage}
             >
               <MaterialIcons name="edit" size={16} color={"#222222"} />
             </TouchableOpacity>
             <View
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "center",
-                marginTop: 10
-              }}
+              style={styles.TitleView}
             >
               <Text
-                style={{
-                  fontSize: 18,
-                  color: "#333333",
-                  fontWeight: "600",
-                  lineHeight: 25
-                }}
+                style={styles.TitleText}
                 numberOfLines={2}
               >
                 {name}
               </Text>
               <Text
-                style={{
-                  fontSize: 12,
-                  color: "#999999",
-                  marginTop: 5,
-                  lineHeight: 16
-                }}
+                 style={styles.EmailText}
               >
                 {email}
               </Text>
@@ -232,16 +192,9 @@ class CreateProfile extends Component {
         </ScrollView>
         <TouchableOpacity onPress={ isValidEmail(this.state.email) && isValidPhone(this.state.number) && !isEmpty(this.state.name) && !isEmpty(this.state.email) && !isEmpty(this.state.number) && !isEmpty(this.state.idProof) ? this.createProfile : null}>
           <View
-            style={{
-              padding: 15,
-              marginHorizontal: 20,
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: 30,
-              backgroundColor: "grey"
-            }}
+            style={styles.UpdateProfileView}
           >
-            <Text style={{ color: "#222", fontSize: 16, fontWeight: "bold" }}>
+            <Text style={styles.UpdateProfileText}>
               CREATE PROFILE
             </Text>
           </View>

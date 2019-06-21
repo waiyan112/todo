@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 import {
-  StyleSheet,
   Text,
   View,
-  Dimensions,
   TouchableOpacity
 } from "react-native";
 import { connect } from "react-redux";
 import styles from './styles';
-
-const { height, width } = Dimensions.get("window");
 
 class NoteScreen extends Component {
   constructor(props) {

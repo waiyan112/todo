@@ -164,7 +164,7 @@ class HomeScreen extends PureComponent {
   render() {
     console.log(this.props.filteredTask, "lknfjnjnjnn11111111");
     return (
-      <View>
+      <View style={{flex:1}}>
         <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
         <View
           style={styles.searchView}
@@ -175,19 +175,19 @@ class HomeScreen extends PureComponent {
             multiline={false}
             placeholder={"Start typing to search"}
             placeholderTextColor="#8d8a7d"
-            style={{ color: "#fff" }}
+            style={styles.searchText}
           />
           <Icon
             onPress={this.searchTask}
             name={this.state.clear ? "search" : "times"}
             size={25}
             color={"#fff"}
-            style={{ marginRight: 5 }}
+            style={styles.searchIcon}
           />
         </View>
         <FlatList
           showsVerticalScrollIndicator={false}
-          style={this.props.style}
+          style={{flex:1}}
           data={
             this.state.clear ? this.props.taskList : this.props.filteredTask
           }

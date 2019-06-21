@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, Dimensions, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import { taskDataUpdate } from "../redux/actions/taskAction";
-
-
-const { height, width } = Dimensions.get('window');
+import styles from './styles';
 
 class EditScreen extends Component {
     constructor(props) {
@@ -33,8 +31,8 @@ class EditScreen extends Component {
         const params = navigation.state.params || {};
         return {
             headerTitle: "Edit Note",
-            headerStyle: { height: height / 8, },
-            headerTitleStyle: { fontSize: 30, fontFamily: "serif", fontWeight: 'bold', justifyContent: 'flex-start', alignSelf: 'flex-end', marginBottom: 18 },
+            headerStyle: styles.editScreenHeaderStyle,
+            headerTitleStyle: styles.editScreenHeaderTitleStyle,
             headerRight: params.headerRight
         }
     }
